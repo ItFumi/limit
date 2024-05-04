@@ -21,6 +21,9 @@
     <v-main class="main">
       <router-view />
     </v-main>
+    <v-footer>
+      <small>©limit</small>
+    </v-footer>
   </v-app>
 </template>
 <script>
@@ -95,5 +98,11 @@ export default {
   }
   #app .v-list .v-list-item .nav-link .v-list-item__icon .v-icon {
     color: #FFF;
+  }
+  #app .v-footer {
+    background: #000;
+    color: #FFF;
+    display: block;
+    text-align: center;
   }
 </style>
