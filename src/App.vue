@@ -60,6 +60,9 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  #app main {
+    background: linear-gradient(#540000, #BE0F21);
+  }
   #app .logo {
     color: #fff;
     text-decoration: none;
