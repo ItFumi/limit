@@ -29,6 +29,21 @@
         </v-container>
         <v-btn class="stepBtn" @click="e1 = 2">進む</v-btn>
       </v-stepper-content>
+      <v-stepper-content step="2">
+        <v-container class="align-center d-flex elevation-0 justify-center my-12 transparent" height="200px">
+          <div class="quizTitle">
+            <v-card class="py-6 settingBox" outlined tile>
+              <div class="textItem">タイトル</div>
+              <div class="textBox">
+                <input type="text" class="titleBox" v-model.trim="quizTitle" maxlength="20">
+              </div>
+              <div class="textCount">{{quizTitle.length}} / 20</div>
+            </v-card>
+          </div>
+        </v-container>
+        <v-btn class="stepBtn" text @click="e1 = 1">戻る</v-btn>
+        <v-btn class="stepBtn" @click="e1 = 3" :disabled="this.quizTitle == ''" :class="{'disabled':this.quizTitle == ''}">進む</v-btn>
+      </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -36,7 +51,21 @@
 export default {
   data() {
     return{
-      e1: 1
+      e1: 1,
+      isSelected: 30,
+      isHovered: false,
+      quizTitle: '',
+    }
+  },
+  methods: {
+    isSelect(n) {
+      this.isSelected = n;
+    },
+    onHover() {
+      this.isHovered = true;
+    },
+    offHover() {
+      this.isHovered = false;
     }
   }
 }
@@ -179,5 +208,41 @@ export default {
   }
   .v-stepper .disabled {
     opacity: .5;
+  }
+  /* ステップ2 出題タイトルの設定 */
+  .v-stepper .v-stepper__content .quizTitle {
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+  }
+  .v-stepper .v-stepper__content .quizTitle .settingBox {
+    background: #970812 !important;
+    border: 3px solid #ffedd2;
+    border-radius: 10px !important;
+    color: #fff !important;
+    width: 500px;
+  }
+  .v-stepper .v-stepper__content .quizTitle .settingBox .textItem {
+    margin: auto;
+    text-align: left;
+    width: 90%;
+  }
+  .v-stepper .v-stepper__content .quizTitle .settingBox .textBox {
+    background: #fff;
+    border-radius: 10px;
+    margin: 10px auto 0;
+    width: 90%;
+  }
+  .v-stepper .v-stepper__content .quizTitle .settingBox .textBox .titleBox {
+    outline: none;
+    padding: 5px 10px;
+    text-align: center;
+    width: 100%;
+  }
+  .v-stepper .v-stepper__content .quizTitle .settingBox .textCount {
+    font-size: 0.8rem;
+    margin: 3px auto 0;
+    text-align: right;
+    width: 90%;
   }
 </style>
